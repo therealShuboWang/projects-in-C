@@ -2,6 +2,7 @@
 #define _HEADER_H_
 
 #include <stdio.h>
+#include <stdbool.h>
 
 /*
  * 进行宏定义
@@ -24,5 +25,31 @@
  */
 int num_in_rank[NUM_OF_RANKS];
 int num_in_suit[NUM_OF_SUITS];
+
+
+/*
+ * 定义全局变量
+ * 布尔变量straight, flush, four_of_a_kind, three_of_a_kind分别表示本轮游戏抽取的5张牌所能形成的4种基本结果
+ * 布尔变量初始化均为false，如果通过函数的分析发现本轮游戏出现了某种结果，则将对应布尔量的值设置为true
+ * straight        : 顺子（5张牌的等级连续）
+ * flush           : 同花（5张牌的花色相同）
+ * four_of_a_kind  : 四张（4张牌的等级相同） 
+ * three_of_a_kind : 三张（3张牌的等级相同）
+ * 整型变量num_of_pairs初始化为0，可能取值为1或2，代表了本轮游戏抽取的5张牌所能形成的另外两种基本结果
+ * num_of_pairs = 2: 两对（2对牌的等级相同）
+ * num_of_pairs = 1: 一对（1对牌的等级相同）
+ *
+ * 注意：
+ * 除了上述所列的6种基本情况外，还有两种由基本情况组合出的结果
+ * straight flush : 同花顺（5张牌的等级连续，花色相同）
+ * full horse     : 葫芦（5张牌中有3张牌为同一个等级，另外2张牌为另一种等级）
+ * 如果5张牌可以形成上述8种结果中的多种结果，则程序将自动选择最好的一种情况输出
+ * 8中结果的好坏排序：同花顺 > 四张 > 葫芦 > 同花 > 顺子 > 三张 > 两对 > 一对
+ */
+bool straight;
+bool flush;
+bool four_of_a_kind;
+bool three_of_a_kind;
+int num_of_pairs;
 
 #endif

@@ -4,7 +4,6 @@
 
 #include "header.h"
 #include <stdlib.h>
-#include <stdbool.h>
 
 extern int num_in_rank[NUM_OF_RANKS];
 extern int num_in_suit[NUM_OF_SUITS];
@@ -99,6 +98,20 @@ void read_cards(void)
                 bad_card = true;
         }
 
+        /* 
+         * 由于使用getchar()接收用户输入，因此在任何一次接受用户输入的过程中：
+         * 将表示等级和花色的两个字符按顺序存储在对应的字符变量中，供程序进行后续判断
+         * 除此之外输入的任何多余字符都必须用一个字符变量接收并丢弃，以免影响对等级和花色字符的正确接收
+         */
+        char ch;
+        while ((ch = getchar()) != '\n')
+        {
+            if (ch != ' ')
+            {
+                bad_card = true;
+            }
+        }
+
 
         /*
          * 对用户该次抽取的牌进行分析检查
@@ -110,11 +123,11 @@ void read_cards(void)
          */
         if (bad_card)
         {
-            printf("Bad card; ignored.\n");
+            printf("输入非法牌！请重新输入\n");
         }
         else if (card_exists[rank][suit])
         {
-            printf("Duplicate card; ignored.\n");
+            printf("输入同一张牌两次！请重新输入\n");
         }
         else
         {
