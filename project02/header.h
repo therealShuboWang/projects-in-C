@@ -19,5 +19,16 @@ typedef enum {A, B} Player;
 extern Type pieces[N][N];
 extern Player player;
 
+/* 函数原型 */
+void draw_board(void);
+
+int get_row_coord(void);
+int get_column_coord(void);
+
+Type check_result(int x, int y);
+
+void welcome(void);
+void game_over(void);
+
 #endif
 
