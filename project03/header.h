@@ -29,5 +29,6 @@ void create_book(void);
 void delete_book(void);
 void modify_book(void);
 void search_book(void);
+void show_book(void);
 
 #endif

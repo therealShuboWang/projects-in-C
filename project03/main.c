@@ -1,61 +1,111 @@
-#include "header.h"
+/* *********************************************************************************************************************************************
+ * **************************************************************** 主函数模块 *****************************************************************
+ * *********************************************************************************************************************************************/
 
+#include "header.h"
+#include <stdbool.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+/* 定义全局变量 */
 Book *head = NULL;
 Book *tail = NULL;
 
 int main(void)
 {
-   create_book();
-   Book *temp = head;
-   int counter = 1;
-   while (temp != NULL)
-   {
-        printf("图书 %d 的信息为：\n", counter);
-        printf("number: %d\tname: %s\twriter: %s\tpress: %s\tcategory: %s\ttime: %s\t%f\n\n", 
-                temp->number, temp->name, temp->writer, temp->press, temp->category, temp->time, temp->price);
+    int choice;
+    char check;
 
-        temp = temp->next;
-        counter++;
-   }
+    while (true)
+    {
+        system("clear");
 
-//   delete_book();
-//   temp = head;
-//   counter = 1;
-//   while (temp != NULL)
-//   {
-//        printf("图书 %d 的信息为：\n", counter);
-//        printf("number: %d\tname: %s\twriter: %s\tpress: %s\tcategory: %s\ttime: %s\t%f\n\n", 
-//                temp->number, temp->name, temp->writer, temp->press, temp->category, temp->time, temp->price);
-//
-//        temp = temp->next;
-//        counter++;
-//   }
-//
-//   modify_book();
-//   temp = head;
-//   counter = 1;
-//   while (temp != NULL)
-//   {
-//        printf("图书 %d 的信息为：\n", counter);
-//        printf("number: %d\tname: %s\twriter: %s\tpress: %s\tcategory: %s\ttime: %s\t%f\n\n", 
-//                temp->number, temp->name, temp->writer, temp->press, temp->category, temp->time, temp->price);
-//
-//        temp = temp->next;
-//        counter++;
-//   }
+        printf("                        -------------------------\n");
+        printf("                            * 图书管理系统 *\n");
+        printf("                        -------------------------\n");
+        printf("        **************************************************************\n");
+        printf("                            * 1-录入图书\n");
+        printf("                            * 2-删除图书\n");
+        printf("                            * 3-修改图书\n");
+        printf("                            * 4-查询图书\n");
+        printf("                            * 5-图书列表\n");
+        printf("                            * 0-退出系统\n");
+        printf("        **************************************************************\n\n");
 
-   search_book(); 
+        sleep(1);
+        printf("请输入操作编号：");
+        scanf("%d", &choice);
+        getchar();
+        system("clear");
 
+        switch (choice)
+        {
+            case 1:
+                printf("注意：当输入的图书编号为0时表示结束录入操作！\n");
+                sleep(1);
+                create_book();
 
-   return 0;
+                printf("是否继续其它操作(y/n)：");
+                scanf("%c", &check);
+                getchar();
+                if (check == 'n')
+                {
+                    printf("感谢您的使用！\n");
+                    sleep(1);
+                    return 0;
+                }
+                break;
+            case 2:
+                delete_book(); 
+                printf("是否继续其它操作(y/n)：");
+                scanf("%c", &check);
+                if (check == 'n')
+                {
+                    printf("感谢您的使用！\n");
+                    sleep(1);
+                    return 0;
+                }
+                break;
+            case 3:
+                modify_book();
+                printf("是否继续其它操作(y/n)：");
+                scanf("%c", &check);
+                if (check == 'n')
+                {
+                    printf("感谢您的使用！\n");
+                    sleep(1);
+                    return 0;
+                }
+                break;
+            case 4:
+                search_book();
+                printf("是否继续其它操作(y/n)：");
+                scanf("%c", &check);
+                if (check == 'n')
+                {
+                    printf("感谢您的使用！\n");
+                    sleep(1);
+                    return 0;
+                }
+                break;
+            case 5:
+                show_book();
+                printf("是否继续其它操作(y/n)：");
+                scanf("%c", &check);
+                if (check == 'n')
+                {
+                    printf("感谢您的使用！\n");
+                    sleep(1);
+                    return 0;
+                }
+                break;
+            case 0:
+                printf("感谢您的使用！\n");
+                sleep(1);
+                return 0;
+            default:
+                printf("您的输入有误，请重新输入！\n");
+                sleep(1);
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
