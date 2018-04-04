@@ -27,5 +27,7 @@ extern Book *tail;
 /* 共享函数声明 */
 void create_book(void);
 void delete_book(void);
+void modify_book(void);
+void search_book(void);
 
 #endif
